@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Bewerber API Test</title>
+</head>
+<body>
+<h1>Bewerber-API Test</h1>
+
+<button onclick="ladeBewerber()">📥 Bewerber laden</button>
+<pre id="output"></pre>
+
+<h2>➕ Neuen Bewerber hinzufügen</h2>
+<form id="bewerberForm">
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="number" id="erfahrung" placeholder="Erfahrung (Jahre)" required>
+    <button type="submit">Senden</button>
+</form>
+
+<script>
+    function ladeBewerber() {
+        fetch('http://localhost:6767/api/bewerber')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(err => alert("Fehler beim Laden: " + err));
+    }
+
+    document.getElementById('bewerberForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const erfahrung = parseInt(document.getElementById('erfahrung').value);
+
+        const neuerBewerber = {
+            name: name,
+            jahreBerufserfahrung: erfahrung
+        };
+
+        fetch('http://localhost:6767/api/bewerber', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(neuerBewerber)
+        })
+        .then(res => res.text())
+        .then(msg => {
+            alert(msg);
+            ladeBewerber();
+        })
+        .catch(err => alert("Fehler beim Senden: " + err));
+    });
+</script>
+</body>
+</html>

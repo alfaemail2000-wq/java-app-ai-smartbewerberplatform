@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"Alle Packages","u":"allpackages-index.html"},{"l":"de.backend.bewerber"},{"l":"de.backend.dateischreibenlessen"},{"l":"de.backend.datenbank"},{"l":"de.backend.jobs"},{"l":"de.backend.machinelearning"},{"l":"de.backend.service"},{"l":"de.frontend.appGui"},{"l":"de.jsonversuche"},{"l":"de.tests"},{"l":"serverundclienttest"}];updateSearchResults();
